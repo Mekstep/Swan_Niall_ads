@@ -94,7 +94,8 @@ void PrintBoard(const int *board)
 {
 	int index = 0;
 	char pieces[] = "OX|-";
-	printf("\n\nBoard:\n\n");
+	printf("\n\n\t***NOUGHTS AND CROSSES***\n\n");
+	
 	
 	//print squares
 	for(index = 0; index < 9; ++index) 
@@ -103,11 +104,10 @@ void PrintBoard(const int *board)
 		//create a new line after every 3 squares
 		if(index!=0 && index%3==0) 
 		{
-			
 			printf("\n\n");
 		}
 		
-		printf("%4c",pieces[board[ConvertTo25[index]]]);
+		printf("\t%4c",pieces[board[ConvertTo25[index]]]);
 	}
 	
 	printf("\n");
@@ -148,7 +148,7 @@ int GetPlayerMove(const int *board)
 	{
 	
 		//prompt
-		printf("Please enter a move from 1 to 9:");		
+		printf("\nPlease enter a move from 1 to 9:\n");		
 		
 		//get input
 		fgets(userInput, 3, stdin);
@@ -159,7 +159,7 @@ int GetPlayerMove(const int *board)
 		//invalid input
 		if(strlen(userInput) != 2) 
 		{
-			printf("Please insert a number\n");
+			printf("\nPlease insert a number\n");
 			continue;			
 		}
 		
@@ -167,7 +167,7 @@ int GetPlayerMove(const int *board)
 		if( sscanf(userInput, "%d", &move) != 1) 
 		{
 			move = -1;
-			printf("Please insert a number\n");
+			printf("\nPlease insert a number\n");
 			continue;
 		}
 		
@@ -175,7 +175,7 @@ int GetPlayerMove(const int *board)
 		if( move < 1 || move > 9) 
 		{
 			move = -1;
-			printf("Please insert a number between 1 and 9\n");
+			printf("\nPlease insert a number between 1 and 9\n");
 			continue;
 		}
 		
@@ -185,7 +185,7 @@ int GetPlayerMove(const int *board)
 		if( board[ConvertTo25[move]]!=EMPTY) 
 		{
 			move=-1;
-			printf("Square not available\n");
+			printf("\nSquare not available\n");
 			continue;
 		}
 		
@@ -194,7 +194,7 @@ int GetPlayerMove(const int *board)
 	}
 	
 	//print move
-	printf("Making Move...%d\n",(move+1));
+	printf("\nMaking move on square %d\n",(move+1));
 	
 	//return move
 	return ConvertTo25[move];
@@ -324,8 +324,6 @@ void RunGameVsAI() {
 				MakeMove(&board[0], LastMoveMade, Side);
 				//change sides
 				Side = CROSSES;
-				//print board
-				PrintBoard(&board[0]);
 			} 
 			//crosses turn
 			else 
@@ -376,7 +374,7 @@ int main() {
 	
 	char selection;
 	int selectionMade = 0;
-		
+
 	//prompt
 	printf("Press 1 to play against a player\n");
 	printf("Press 2 to play against AI\n");	
@@ -389,13 +387,14 @@ int main() {
 		selectionMade = 1;
 	}
 	
-	if(selectionMade = 1)
+	if(selectionMade == 1)
 	{
-		if(selection = 1)
+		if(selection == 1)
 		{
 			RunGame();
 		}
-		else if(selection = 2)
+		
+		if(selection == 2)
 		{
 			RunGameVsAI();
 		}
