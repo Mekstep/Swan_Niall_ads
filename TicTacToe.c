@@ -37,7 +37,10 @@ void InitialiseBoard(int *board)
 void PrintBoard(const int *board)
 {
 	int index = 0;
-	printf("\nBoard:\n);
+	
+	char pieces[] = "OX|-";
+	
+	printf("\nBoard:\n");
 	
 	//print squares
 	for(index= 0; index < 25; index++)
@@ -45,13 +48,16 @@ void PrintBoard(const int *board)
 		//create a new line after every 5 squares
 		if(index!=0 && index%5==0)
 		{
-			printf("%4d", board[index]);
+			printf("\n");
 		}
+		
+		printf("%4c", pieces[board[ConvertTo25[index]]]);
 	}
 	
 	printf("\n");
 }
 
+//run the game
 void RunGame()
 {
 	//declare board
@@ -63,9 +69,13 @@ void RunGame()
 	//print board
 	PrintBoard(&board[0]);
 }
+
+
 int main()
 {
 	RunGame();
 	
 	return 0;
 }
+
+*/
