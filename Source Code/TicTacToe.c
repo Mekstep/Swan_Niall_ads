@@ -399,7 +399,10 @@ int main() {
 			RunGameVsAI();
 		}
 	}
-	
+
+	printf("Press ENTER key to Continue\n");
+	getchar();
+
 	return 0;
 }
 
