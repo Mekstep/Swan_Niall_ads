@@ -6,7 +6,6 @@
 
 //board squares
 enum { NOUGHTS, CROSSES, BORDER, EMPTY };
-enum { HUMANWIN, COMPWIN, DRAW };
 
 //directions
 const int directions[4] = {1, 5, 4, 6};
@@ -78,8 +77,7 @@ void InitialiseBoard(int *board)
 	int index = 0;
 	
 	for(index = 0; index < 25; ++index) 
-	{
-		
+	{		
 		board[index] = BORDER;
 	}
 	
@@ -115,7 +113,7 @@ void PrintBoard(const int *board)
 	printf("\n");
 }
 
-//check to see if board location is empty
+//check to see if board has any empty spaces
 int HasEmpty(const int *board) 
 {
 	int index = 0;
@@ -161,7 +159,7 @@ int GetPlayerMove(const int *board)
 		//invalid input
 		if(strlen(userInput) != 2) 
 		{
-			printf("Invalid strlen()\n");
+			printf("Please insert a number\n");
 			continue;			
 		}
 		
@@ -169,7 +167,7 @@ int GetPlayerMove(const int *board)
 		if( sscanf(userInput, "%d", &move) != 1) 
 		{
 			move = -1;
-			printf("Invalid sscanf()\n");
+			printf("Please insert a number\n");
 			continue;
 		}
 		
@@ -177,7 +175,7 @@ int GetPlayerMove(const int *board)
 		if( move < 1 || move > 9) 
 		{
 			move = -1;
-			printf("Invalid range\n");
+			printf("Please insert a number between 1 and 9\n");
 			continue;
 		}
 		
@@ -250,7 +248,7 @@ void RunGame() {
 			{		
 				//get player 1 move
 				LastMoveMade = GetPlayerMove(&board[0]);
-				//make player 1 mover
+				//make player 1 move
 				MakeMove(&board[0], LastMoveMade, Side);
 				//change sides
 				Side = CROSSES;
